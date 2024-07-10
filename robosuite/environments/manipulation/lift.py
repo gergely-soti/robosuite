@@ -278,6 +278,13 @@ class Lift(SingleArmEnv):
         # Arena always gets set to zero origin
         mujoco_arena.set_origin([0, 0, 0])
 
+        n_cameras = 25
+        for i in range(n_cameras):
+            camera_name = f"camera_{i}"
+            pos = np.array([1.6, 0, 1.45]) + np.random.uniform(-0.1, 0.1, size=3)
+            quaternion = [0.56, 0.43, 0.43, 0.56]
+            mujoco_arena.set_camera(camera_name, pos, quaternion)
+
         # initialize objects of interest
         tex_attrib = {
             "type": "cube",
